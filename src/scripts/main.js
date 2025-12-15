@@ -3,18 +3,14 @@
 function waitFor(element, eventName) {
   return new Promise((resolve) => {
     function onEvent(ev) {
-      if (ev.target !== element) {
-        return;
-      }
-
-      document.removeEventListener(eventName, onEvent);
+      element.removeEventListener(eventName, onEvent);
 
       resolve(
         `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`,
       );
     }
 
-    document.addEventListener(eventName, onEvent);
+    element.addEventListener(eventName, onEvent);
   });
 }
 
